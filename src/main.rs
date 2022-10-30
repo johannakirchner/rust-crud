@@ -3,7 +3,6 @@ use apoitment::*;
 use appointments::*;
 use diesel::prelude::*;
 use schema::appointments;
-use std::env::args;
 use std::io::stdin;
 
 pub mod models;
@@ -65,7 +64,6 @@ fn remove_appointment() {
 
     println!("Id to remove: ");
 
-
     let mut d = String::new();
     stdin().read_line(&mut d).unwrap();
     let d = d.trim_end();
@@ -82,11 +80,35 @@ fn remove_appointment() {
 }
 
 fn main() {
-    show_appointments();
-    new_appointment();
-    show_appointments();
-    remove_appointment();
-    show_appointments();
-    approve_appointment();
-    show_appointments();
+    let mut quit = false;
+
+    while !quit {
+        println!("\nSelect the operation");
+        println!("1. Create Appointment");
+        println!("2. Delete Appointment");
+        println!("3. Approve Appointment");
+        println!("4. Show Appoitments");
+        println!("5. Quit");
+
+        let mut d = String::new();
+
+        stdin().read_line(&mut d).unwrap();
+        let d = d.trim_end();
+
+        if d == "1" {
+            new_appointment();
+        }
+        if d == "2" {
+            remove_appointment();
+        }
+        if d == "3" {
+            approve_appointment();
+        }
+        if d == "4" {
+            show_appointments();
+        }
+        if d == "5" {
+            quit = true;
+        }
+    }
 }
