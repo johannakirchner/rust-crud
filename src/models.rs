@@ -4,7 +4,7 @@ use diesel::prelude::*;
 pub struct Appointment {
     pub id: i32,
     pub descrip: String,
-    pub isapproved: Option<bool>,
+    pub isapproved: bool,
 }
 
 use crate::schema::appointments;

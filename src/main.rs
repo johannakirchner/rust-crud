@@ -39,18 +39,8 @@ fn approve_appointment() {
 
     let c = &mut connection();
 
-    println!("Approve appointment with id {}?", other_id);
-
-    let mut approve = String::new();
-    stdin().read_line(&mut approve).unwrap();
-
-    let approve: bool = match approve.trim().parse() {
-        Ok(num) => num,
-        Err(_) => false,
-    };
-
     let post = diesel::update(appointments.find(other_id))
-        .set(isapproved.eq(approve))
+        .set(isapproved.eq(true))
         .get_result::<Appointment>(c)
         .unwrap();
     println!("Altered appointment {}", post.id);

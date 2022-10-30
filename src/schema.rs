@@ -4,6 +4,6 @@ diesel::table! {
     appointments (id) {
         id -> Int4,
         descrip -> Varchar,
-        isapproved -> Nullable<Bool>,
+        isapproved -> Bool,
     }
 }
